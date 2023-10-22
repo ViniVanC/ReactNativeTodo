@@ -1,22 +1,21 @@
 import { useState } from "react";
-import { FlatList, SafeAreaView, StyleSheet, View } from "react-native";
+import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import Header from "./components/Header";
 import ListItem from "./components/ListItem";
 import Form from "./components/Form";
 
 export default function App() {
-  const [listOfItems, setListOfItems] = useState([
-    { text: "task1", key: "1" },
-    { text: "task2", key: "2" },
-    { text: "task3", key: "3" },
-    { text: "task4", key: "4" },
-  ]);
+  const [listOfItems, setListOfItems] = useState([]);
 
   const addHandler = (text) => {
     setListOfItems((list) => {
       if (text !== "") {
         return [
-          { text: text, key: Math.random().toString(36).substring(7) },
+          {
+            done: false,
+            text: text,
+            key: Math.random().toString(36).substring(7),
+          },
           ...list,
         ];
       } else {
@@ -29,30 +28,53 @@ export default function App() {
     setListOfItems((list) => list.filter((item) => item.key !== key));
   };
 
+  const doneHandler = (key) => {
+    const updatedTasks = listOfItems.map((task) => {
+      if (task.key === key) {
+        return { ...task, done: !task.done };
+      }
+      return task;
+    });
+    setListOfItems(updatedTasks);
+  };
+
   return (
-    <SafeAreaView>
-      <View style={styles.main}>
-        <Header />
-        <Form addHandler={addHandler} />
-        <View>
-          <FlatList
-            data={listOfItems}
-            renderItem={({ item }) => (
-              <ListItem el={item} deleteItem={deleteItem} />
-            )}
-          />
-        </View>
+    <View style={styles.main}>
+      <Header />
+      <Form addHandler={addHandler} />
+      <View style={{ flex: 1, paddingBottom: 20 }}>
+        <FlatList
+          data={listOfItems}
+          renderItem={({ item }) => (
+            <ListItem
+              el={item}
+              deleteItem={deleteItem}
+              doneHandler={doneHandler}
+            />
+          )}
+          ListEmptyComponent={() => (
+            <Text style={styles.warnText}>No tasks</Text>
+          )}
+        />
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   main: {
+    display: "flex",
+
     width: "100vw",
     height: "100vh",
-    padding: 15,
-    overflow: "hidden",
+    minHeight: "100%",
+    paddingHorizontal: 15,
     backgroundColor: "#f5f5f5",
+  },
+  warnText: {
+    textAlign: "center",
+    fontSize: 30,
+    fontWeight: "bold",
+    padding: 30,
   },
 });
