@@ -2,7 +2,7 @@ import { useState } from "react";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { View, StyleSheet, TextInput, Pressable } from "react-native";
 
-export default function Form({ addHandler }) {
+export default function Form({ addHandler, colorScheme }) {
   const [todo, setTodo] = useState("");
 
   const onChange = (text) => {
@@ -15,16 +15,19 @@ export default function Form({ addHandler }) {
         value={todo}
         onChangeText={onChange}
         placeholder="Enter todo"
-        style={styles.form}
+        style={[
+          styles.form,
+          { color: colorScheme[1], borderColor: colorScheme[1] },
+        ]}
       />
       <Pressable
         onPress={() => {
           addHandler(todo);
           setTodo("");
         }}
-        style={styles.btn}
+        style={[styles.btn, { backgroundColor: colorScheme[1] }]}
       >
-        <Icon name="plus" size={18} color={"#fff"} />
+        <Icon name="plus" size={18} color={colorScheme[0]} />
       </Pressable>
     </View>
   );
@@ -46,7 +49,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 10,
-    backgroundColor: "#000",
+
     borderRadius: 3,
   },
 });

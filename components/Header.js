@@ -1,9 +1,9 @@
 import { View, StyleSheet, Text } from "react-native";
 
-export default function Header() {
+export default function Header({ colorScheme }) {
   return (
     <View style={styles.main}>
-      <Text style={styles.text}>Tasks</Text>
+      <Text style={[styles.text, { color: colorScheme[1] }]}>Tasks</Text>
     </View>
   );
 }
