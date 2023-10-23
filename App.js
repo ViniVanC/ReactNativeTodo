@@ -1,5 +1,11 @@
 import React from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 
 import Header from "./components/Header";
 import ListItem from "./components/ListItem";
@@ -18,6 +24,8 @@ export default function App() {
     setCurrentColorScheme,
     listOfItems,
     setListOfItems,
+    showForm,
+    setShowForm,
   } = useAppState();
 
   return (
@@ -36,12 +44,6 @@ export default function App() {
         setCurrentColorScheme={setCurrentColorScheme}
       />
 
-      <Form
-        addHandler={(text) =>
-          text !== "" && addItem(text, listOfItems, setListOfItems)
-        }
-        currentColorScheme={currentColorScheme}
-      />
       <View style={{ flex: 1 }}>
         <FlatList
           data={listOfItems}
@@ -62,7 +64,38 @@ export default function App() {
           )}
         />
       </View>
-      <Menu currentColorScheme={currentColorScheme} />
+      {showForm && (
+        <TouchableWithoutFeedback onPress={setShowForm}>
+          <View
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100vw",
+              height: "100vh",
+              backgroundColor: "#00000075",
+              zIndex: 5,
+            }}
+          />
+        </TouchableWithoutFeedback>
+      )}
+      <View
+        style={[styles.menuBox, { backgroundColor: currentColorScheme[1] }]}
+      >
+        {showForm && (
+          <Form
+            addHandler={(text) =>
+              text !== "" && addItem(text, listOfItems, setListOfItems)
+            }
+            currentColorScheme={currentColorScheme}
+          />
+        )}
+        <Menu
+          currentColorScheme={currentColorScheme}
+          showForm={showForm}
+          setShowForm={setShowForm}
+        />
+      </View>
     </View>
   );
 }
@@ -80,5 +113,13 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "bold",
     padding: 30,
+  },
+  menuBox: {
+    marginHorizontal: -15,
+    paddingHorizontal: 30,
+    borderTopStartRadius: 20,
+    borderTopEndRadius: 20,
+    position: "relative",
+    zIndex: 6,
   },
 });

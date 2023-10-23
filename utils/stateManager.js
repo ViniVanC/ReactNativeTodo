@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useReducer } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const colorScheme = [
@@ -13,6 +13,7 @@ const colorScheme = [
 export const useAppState = () => {
   const [currentColorScheme, setCurrentColorScheme] = useState(colorScheme[0]);
   const [listOfItems, setListOfItems] = useState([]);
+  const [showForm, setShowForm] = useReducer((s) => !s, true);
 
   const loadItems = async () => {
     try {
@@ -46,6 +47,8 @@ export const useAppState = () => {
   }, []);
 
   return {
+    showForm,
+    setShowForm,
     colorScheme,
     currentColorScheme,
     setCurrentColorScheme,

@@ -11,13 +11,13 @@ export default function Form({ addHandler, currentColorScheme }) {
 
   return (
     <View style={styles.main}>
-      <Text style={{ color: currentColorScheme[1] }}>Enter task</Text>
+      <Text style={{ color: currentColorScheme[0] }}>Enter task</Text>
       <TextInput
         value={todo}
         onChangeText={onChange}
         style={[
           styles.form,
-          { color: currentColorScheme[1], borderColor: currentColorScheme[1] },
+          { color: currentColorScheme[0], borderColor: currentColorScheme[0] },
         ]}
       />
       <Pressable
@@ -25,16 +25,16 @@ export default function Form({ addHandler, currentColorScheme }) {
           addHandler(todo);
           setTodo("");
         }}
-        style={[styles.btn, { backgroundColor: currentColorScheme[1] }]}
+        style={[styles.btn, { backgroundColor: currentColorScheme[0] }]}
       >
-        <Icon name="plus" size={18} color={currentColorScheme[0]} />
+        <Icon name="plus" size={18} color={currentColorScheme[1]} />
       </Pressable>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  main: {},
+  main: { paddingVertical: 20 },
   form: {
     height: 40,
     paddingHorizontal: 10,
