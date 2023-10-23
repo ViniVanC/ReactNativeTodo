@@ -15,7 +15,12 @@ export default function ListItem({
 }) {
   return (
     <TouchableHighlight>
-      <View style={el.done ? styles.active : styles.main}>
+      <View
+        style={[
+          el.done ? styles.active : styles.main,
+          { borderColor: currentColorScheme[1] },
+        ]}
+      >
         <Pressable
           onPress={() => doneHandler(el.key)}
           style={[styles.btn, { paddingRight: 10 }]}
@@ -49,7 +54,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingTop: 20,
+    padding: 5,
+    marginTop: 10,
+    borderWidth: 2,
+    borderRadius: 5,
   },
   text: {
     flex: 1,
@@ -61,7 +69,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingTop: 20,
+    padding: 5,
+    marginTop: 10,
+    borderWidth: 2,
+    borderRadius: 5,
     opacity: 0.6,
   },
   btn: {
