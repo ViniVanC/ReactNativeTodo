@@ -1,8 +1,11 @@
 import React from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
+
 import Header from "./components/Header";
 import ListItem from "./components/ListItem";
 import Form from "./components/Form";
+import Menu from "./components/Menu";
+
 import { addItem } from "./utils/addItem";
 import { deleteItem } from "./utils/deleteItem";
 import { doneHandler } from "./utils/doneHandler";
@@ -39,7 +42,7 @@ export default function App() {
         }
         currentColorScheme={currentColorScheme}
       />
-      <View style={{ flex: 1, paddingBottom: 25 }}>
+      <View style={{ flex: 1 }}>
         <FlatList
           data={listOfItems}
           renderItem={({ item }) => (
@@ -59,6 +62,7 @@ export default function App() {
           )}
         />
       </View>
+      <Menu currentColorScheme={currentColorScheme} />
     </View>
   );
 }

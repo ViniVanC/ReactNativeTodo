@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     padding: 5,
-    marginTop: 10,
+    marginBottom: 10,
     borderWidth: 2,
     borderRadius: 5,
   },
@@ -70,7 +70,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     padding: 5,
-    marginTop: 10,
+    marginBottom: 10,
+
     borderWidth: 2,
     borderRadius: 5,
     opacity: 0.6,
