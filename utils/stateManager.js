@@ -3,8 +3,11 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const colorScheme = [
   ["#141414", "#f3f3f3", 0],
-  ["#0a1930", "#e2cbcd", 1],
-  ["#a6ccc5", "#0a1930", 2],
+  ["#f3f3f3", "#141414", 1],
+  ["#0a1930", "#e2cbcd", 2],
+  ["#e2cbcd", "#0a1930", 3],
+  ["#a6ccc5", "#0a1930", 4],
+  ["#0a1930", "#a6ccc5", 5],
 ];
 
 export const useAppState = () => {

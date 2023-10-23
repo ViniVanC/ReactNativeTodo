@@ -7,7 +7,7 @@ export const changeColorScheme = async (
 ) => {
   const updatedColorScheme =
     colorScheme[
-      currentColorScheme[2] + 1 > currentColorScheme.length - 1
+      currentColorScheme[2] + 1 > colorScheme.length - 1
         ? 0
         : currentColorScheme[2] + 1
     ];
