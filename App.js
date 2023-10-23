@@ -6,17 +6,11 @@ import Form from "./components/Form";
 import { addItem } from "./utils/addItem";
 import { deleteItem } from "./utils/deleteItem";
 import { doneHandler } from "./utils/doneHandler";
-import { changeColorScheme } from "./utils/changeColorScheme";
 import { useAppState } from "./utils/stateManager";
-
-const colorScheme = [
-  ["#141414", "#f3f3f3", 0],
-  ["#0a1930", "#e2cbcd", 1],
-  ["#a6ccc5", "#0a1930", 2],
-];
 
 export default function App() {
   const {
+    colorScheme,
     currentColorScheme,
     setCurrentColorScheme,
     listOfItems,
@@ -33,22 +27,17 @@ export default function App() {
         },
       ]}
     >
-      <Header colorScheme={currentColorScheme} />
-      <Button
-        title={"t"}
-        onPress={() =>
-          changeColorScheme(
-            colorScheme,
-            currentColorScheme,
-            setCurrentColorScheme
-          )
-        }
+      <Header
+        colorScheme={colorScheme}
+        currentColorScheme={currentColorScheme}
+        setCurrentColorScheme={setCurrentColorScheme}
       />
+
       <Form
         addHandler={(text) =>
           text !== "" && addItem(text, listOfItems, setListOfItems)
         }
-        colorScheme={currentColorScheme}
+        currentColorScheme={currentColorScheme}
       />
       <View style={{ flex: 1, paddingBottom: 25 }}>
         <FlatList
@@ -60,7 +49,7 @@ export default function App() {
               doneHandler={(key) =>
                 doneHandler(key, listOfItems, setListOfItems)
               }
-              colorScheme={currentColorScheme}
+              currentColorScheme={currentColorScheme}
             />
           )}
           ListEmptyComponent={() => (

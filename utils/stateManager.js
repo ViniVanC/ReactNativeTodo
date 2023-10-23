@@ -43,6 +43,7 @@ export const useAppState = () => {
   }, []);
 
   return {
+    colorScheme,
     currentColorScheme,
     setCurrentColorScheme,
     listOfItems,

@@ -7,7 +7,12 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
 
-export default function ListItem({ el, deleteItem, doneHandler, colorScheme }) {
+export default function ListItem({
+  el,
+  deleteItem,
+  doneHandler,
+  currentColorScheme,
+}) {
   return (
     <TouchableHighlight>
       <View style={el.done ? styles.active : styles.main}>
@@ -16,13 +21,13 @@ export default function ListItem({ el, deleteItem, doneHandler, colorScheme }) {
           style={[styles.btn, { paddingRight: 10 }]}
         >
           {el.done ? (
-            <Icon name="check-circle" color={colorScheme[1]} size={20} />
+            <Icon name="check-circle" color={currentColorScheme[1]} size={20} />
           ) : (
-            <Icon name="circle" color={colorScheme[1]} size={20} />
+            <Icon name="circle" color={currentColorScheme[1]} size={20} />
           )}
         </Pressable>
         <Text
-          style={[styles.text, { color: colorScheme[1] }]}
+          style={[styles.text, { color: currentColorScheme[1] }]}
           onPress={() => doneHandler(el.key)}
         >
           {el.text}
@@ -31,7 +36,7 @@ export default function ListItem({ el, deleteItem, doneHandler, colorScheme }) {
           onPress={() => deleteItem(el.key)}
           style={[styles.btn, { paddingLeft: 10 }]}
         >
-          <Icon name="trash" color={colorScheme[1]} size={18} />
+          <Icon name="trash" color={currentColorScheme[1]} size={18} />
         </Pressable>
       </View>
     </TouchableHighlight>
