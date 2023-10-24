@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     flexDirection: "row",
-    marginVertical: 10,
+    marginBottom: 10,
     borderBottomWidth: 2,
   },
   form: {

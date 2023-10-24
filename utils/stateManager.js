@@ -14,8 +14,9 @@ export const useAppState = () => {
   const [currentColorScheme, setCurrentColorScheme] = useState(colorScheme[0]);
   const [listOfItems, setListOfItems] = useState([]);
   const [showForm, setShowForm] = useReducer((s) => !s, false);
+  const [showSearchForm, setShowSearchForm] = useReducer((s) => !s, true);
+  const [showToggleMenu, setShowToggleMenu] = useReducer((s) => !s, false);
   const [searchItemName, setSearchItemName] = useState("");
-  const [showSearchForm, setShowSearchForm] = useReducer((o) => !o, true);
 
   const loadItems = async () => {
     try {
@@ -53,6 +54,8 @@ export const useAppState = () => {
     setShowForm,
     showSearchForm,
     setShowSearchForm,
+    showToggleMenu,
+    setShowToggleMenu,
     colorScheme,
     currentColorScheme,
     setCurrentColorScheme,

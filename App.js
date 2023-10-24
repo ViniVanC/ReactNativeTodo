@@ -31,6 +31,8 @@ export default function App() {
     setShowSearchForm,
     searchItemName,
     setSearchItemName,
+    showToggleMenu,
+    setShowToggleMenu,
   } = useAppState();
 
   const searchItems = listOfItems.filter((item) =>
@@ -98,10 +100,29 @@ export default function App() {
           />
         </TouchableWithoutFeedback>
       )}
-      
+
       <View
         style={[styles.menuBox, { backgroundColor: currentColorScheme[1] }]}
       >
+        {showToggleMenu && (
+          <View
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              padding: 20,
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 30,
+                fontWeight: "bold",
+              }}
+            >
+              no items
+            </Text>
+          </View>
+        )}
         {showForm && (
           <Form
             addHandler={(text) =>
@@ -115,6 +136,7 @@ export default function App() {
           showForm={showForm}
           setShowSearchForm={setShowSearchForm}
           setShowForm={setShowForm}
+          setShowToggleMenu={setShowToggleMenu}
         />
       </View>
     </View>
