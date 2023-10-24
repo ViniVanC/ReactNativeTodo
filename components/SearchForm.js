@@ -50,7 +50,6 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 40,
     paddingHorizontal: 10,
-    // marginBottom: 10,
   },
   btn: { backgroundColor: "transparent", padding: 10, rotate: "45deg" },
 });

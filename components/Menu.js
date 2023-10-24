@@ -6,11 +6,10 @@ export default function Menu({
   showForm,
   setShowForm,
   setShowSearchForm,
-  setShowToggleMenu,
 }) {
   return (
     <View style={[styles.main, { backgroundColor: currentColorScheme[1] }]}>
-      <Pressable onPress={setShowToggleMenu}>
+      <Pressable onPress={() => null}>
         <Icon name="bars" color={currentColorScheme[0]} size={20} />
       </Pressable>
       <Pressable

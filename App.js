@@ -1,11 +1,13 @@
 import React from "react";
 import {
   FlatList,
+  Pressable,
   StyleSheet,
   Text,
   TouchableWithoutFeedback,
   View,
 } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome5";
 
 import Header from "./components/Header";
 import ListItem from "./components/ListItem";
@@ -31,8 +33,6 @@ export default function App() {
     setShowSearchForm,
     searchItemName,
     setSearchItemName,
-    showToggleMenu,
-    setShowToggleMenu,
   } = useAppState();
 
   const searchItems = listOfItems.filter((item) =>
@@ -95,7 +95,7 @@ export default function App() {
               width: "100vw",
               height: "100vh",
               backgroundColor: "#00000075",
-              zIndex: 5,
+              zIndex: 4,
             }}
           />
         </TouchableWithoutFeedback>
@@ -104,25 +104,6 @@ export default function App() {
       <View
         style={[styles.menuBox, { backgroundColor: currentColorScheme[1] }]}
       >
-        {showToggleMenu && (
-          <View
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              padding: 20,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 30,
-                fontWeight: "bold",
-              }}
-            >
-              no items
-            </Text>
-          </View>
-        )}
         {showForm && (
           <Form
             addHandler={(text) =>
@@ -131,12 +112,12 @@ export default function App() {
             currentColorScheme={currentColorScheme}
           />
         )}
+
         <Menu
           currentColorScheme={currentColorScheme}
           showForm={showForm}
           setShowSearchForm={setShowSearchForm}
           setShowForm={setShowForm}
-          setShowToggleMenu={setShowToggleMenu}
         />
       </View>
     </View>
@@ -163,6 +144,6 @@ const styles = StyleSheet.create({
     borderTopStartRadius: 20,
     borderTopEndRadius: 20,
     position: "relative",
-    zIndex: 6,
+    zIndex: 5,
   },
 });
