@@ -11,6 +11,7 @@ import Header from "./components/Header";
 import ListItem from "./components/ListItem";
 import Form from "./components/Form";
 import Menu from "./components/Menu";
+import SearchForm from "./components/SearchForm";
 
 import { addItem } from "./utils/addItem";
 import { deleteItem } from "./utils/deleteItem";
@@ -26,7 +27,15 @@ export default function App() {
     setListOfItems,
     showForm,
     setShowForm,
+    showSearchForm,
+    setShowSearchForm,
+    searchItemName,
+    setSearchItemName,
   } = useAppState();
+
+  const searchItems = listOfItems.filter((item) =>
+    item.text.toLowerCase().includes(searchItemName.toLowerCase())
+  );
 
   return (
     <View
@@ -44,9 +53,18 @@ export default function App() {
         setCurrentColorScheme={setCurrentColorScheme}
       />
 
+      {showSearchForm && (
+        <SearchForm
+          setShowSearchForm={setShowSearchForm}
+          searchItemName={searchItemName}
+          setSearchItemName={setSearchItemName}
+          currentColorScheme={currentColorScheme}
+        />
+      )}
+
       <View style={{ flex: 1 }}>
         <FlatList
-          data={listOfItems}
+          data={searchItems}
           renderItem={({ item }) => (
             <ListItem
               el={item}
@@ -64,6 +82,7 @@ export default function App() {
           )}
         />
       </View>
+
       {showForm && (
         <TouchableWithoutFeedback onPress={setShowForm}>
           <View
@@ -79,6 +98,7 @@ export default function App() {
           />
         </TouchableWithoutFeedback>
       )}
+      
       <View
         style={[styles.menuBox, { backgroundColor: currentColorScheme[1] }]}
       >
@@ -93,6 +113,7 @@ export default function App() {
         <Menu
           currentColorScheme={currentColorScheme}
           showForm={showForm}
+          setShowSearchForm={setShowSearchForm}
           setShowForm={setShowForm}
         />
       </View>

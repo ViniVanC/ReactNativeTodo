@@ -13,7 +13,9 @@ const colorScheme = [
 export const useAppState = () => {
   const [currentColorScheme, setCurrentColorScheme] = useState(colorScheme[0]);
   const [listOfItems, setListOfItems] = useState([]);
-  const [showForm, setShowForm] = useReducer((s) => !s, true);
+  const [showForm, setShowForm] = useReducer((s) => !s, false);
+  const [searchItemName, setSearchItemName] = useState("");
+  const [showSearchForm, setShowSearchForm] = useReducer((o) => !o, true);
 
   const loadItems = async () => {
     try {
@@ -49,10 +51,14 @@ export const useAppState = () => {
   return {
     showForm,
     setShowForm,
+    showSearchForm,
+    setShowSearchForm,
     colorScheme,
     currentColorScheme,
     setCurrentColorScheme,
     listOfItems,
     setListOfItems,
+    searchItemName,
+    setSearchItemName,
   };
 };

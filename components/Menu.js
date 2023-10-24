@@ -1,16 +1,32 @@
 import { View, StyleSheet, Pressable } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
 
-export default function Menu({ currentColorScheme, showForm, setShowForm }) {
+export default function Menu({
+  currentColorScheme,
+  showForm,
+  setShowForm,
+  setShowSearchForm,
+}) {
   return (
     <View style={[styles.main, { backgroundColor: currentColorScheme[1] }]}>
       <Pressable onPress={() => null}>
         <Icon name="bars" color={currentColorScheme[0]} size={20} />
       </Pressable>
-      <Pressable onPress={setShowForm} style={showForm && { rotate: "45deg" }}>
+      <Pressable
+        onPress={setShowForm}
+        style={
+          showForm && {
+            transform: [
+              {
+                rotate: "45deg",
+              },
+            ],
+          }
+        }
+      >
         <Icon name="plus" color={currentColorScheme[0]} size={30} />
       </Pressable>
-      <Pressable onPress={() => null}>
+      <Pressable onPress={setShowSearchForm}>
         <Icon name="search" color={currentColorScheme[0]} size={20} />
       </Pressable>
     </View>
